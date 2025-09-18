@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}{% if room %}Sửa phòng học{% else %}Thêm phòng học mới{% endif %}{% endblock %}
+
+{% block content %}
+<h2>{% if room %}Sửa phòng học: {{ room.name }}{% else %}Thêm phòng học mới{% endif %}</h2>
+<form action="{% if room %}{{ url_for('room_edit', room_id=room.id) }}{% else %}{{ url_for('room_create') }}{% endif %}" method="post">
+    <div class="form-group">
+        <label for="name">Tên phòng học:</label>
+        <input type="text" id="name" name="name" value="{{ room.name if room else '' }}" required>
+    </div>
+    <div class="form-group">
+        <label for="location">Vị trí:</label>
+        <input type="text" id="location" name="location" value="{{ room.location if room else '' }}">
+    </div>
+    <div class="form-group">
+        <label for="open_time">Thời gian mở cửa:</label>
+        <input type="text" id="open_time" name="open_time" value="{{ room.open_time if room else '' }}">
+    </div>
+    <div class="form-group">
+        <label for="capacity">Sức chứa:</label>
+        <input type="number" id="capacity" name="capacity" value="{{ room.capacity if room else '' }}">
+    </div>
+    <button type="submit" class="button">Lưu</button>
+    <a href="{{ url_for('room_list') }}" class="button">Hủy</a>
+</form>
+{% endblock %}

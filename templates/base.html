@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Web App{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>Hệ thống Quản lý</h1>
+    </div>
+    {% if session.logged_in %}
+    <div class="nav">
+        <a href="{{ url_for('user_list') }}">Danh sách Người dùng</a>
+        <a href="{{ url_for('room_list') }}">Danh sách Phòng học</a>
+        <a href="{{ url_for('logout') }}" style="margin-left: auto;">Đăng xuất</a>
+    </div>
+    {% endif %}
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Chi tiết Phòng học{% endblock %}
+
+{% block content %}
+<h2>Chi tiết Phòng học: {{ room.name }}</h2>
+<p><strong>Tên phòng học:</strong> {{ room.name }}</p>
+<p><strong>Vị trí:</strong> {{ room.location }}</p>
+<p><strong>Thời gian mở cửa:</strong> {{ room.open_time }}</p>
+<p><strong>Sức chứa:</strong> {{ room.capacity }} người</p>
+<a href="{{ url_for('room_list') }}" class="button">Quay lại danh sách</a>
+{% endblock %}

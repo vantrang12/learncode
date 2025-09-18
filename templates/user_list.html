@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Danh sách Người dùng{% endblock %}
+
+{% block content %}
+<h2>Danh sách Người dùng</h2>
+{% if role == 'admin' %}
+<a href="{{ url_for('user_create') }}" class="button">Thêm người dùng mới</a>
+{% endif %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Tên</th>
+            <th>Số điện thoại</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td><a href="{{ url_for('user_detail', user_id=user.id) }}">{{ user.name }}</a></td>
+            <td>{{ user.phone }}</td>
+            <td>
+                {% if role == 'admin' %}
+                <a href="{{ url_for('user_edit', user_id=user.id) }}" class="button">Sửa</a>
+                <form action="{{ url_for('user_delete', user_id=user.id) }}" method="post" style="display:inline;">
+                    <button type="submit" class="button delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa không?');">Xóa</button>
+                </form>
+                {% else %}
+                <span>Xem chi tiết</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

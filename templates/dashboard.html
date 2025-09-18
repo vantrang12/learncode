@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h2>Chào mừng, {{ session.username }}!</h2>
+<p>Bạn đã đăng nhập thành công với quyền **{{ role }}**.</p>
+<p>Sử dụng các menu trên để điều hướng.</p>
+{% endblock %}

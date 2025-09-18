@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Chi tiết Người dùng{% endblock %}
+
+{% block content %}
+<h2>Chi tiết Người dùng: {{ user.name }}</h2>
+<p><strong>Tên:</strong> {{ user.name }}</p>
+<p><strong>Ngày sinh:</strong> {{ user.dob or 'N/A' }}</p>
+<p><strong>Số điện thoại:</strong> {{ user.phone or 'N/A' }}</p>
+<p><strong>Mô tả công việc:</strong> {{ user.job_description or 'N/A' }}</p>
+<a href="{{ url_for('user_list') }}" class="button">Quay lại danh sách</a>
+{% endblock %}

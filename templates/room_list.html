@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Danh sách Phòng học{% endblock %}
+
+{% block content %}
+<h2>Danh sách Phòng học</h2>
+{% if role == 'admin' %}
+<a href="{{ url_for('room_create') }}" class="button">Thêm phòng học mới</a>
+{% endif %}
+<table>
+    <thead>
+        <tr>
+            <th>Tên phòng học</th>
+            <th>Vị trí</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for room in rooms %}
+        <tr>
+            <td><a href="{{ url_for('room_detail', room_id=room.id) }}">{{ room.name }}</a></td>
+            <td>{{ room.location }}</td>
+            <td>
+                {% if role == 'admin' %}
+                <a href="{{ url_for('room_edit', room_id=room.id) }}" class="button">Sửa</a>
+                <form action="{{ url_for('room_delete', room_id=room.id) }}" method="post" style="display:inline;">
+                    <button type="submit" class="button delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa không?');">Xóa</button>
+                </form>
+                {% else %}
+                <span>Xem chi tiết</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
