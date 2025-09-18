@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, g
 import sqlite3
 import hashlib
+app = Flask(__name__)
 
 # Cấu hình ứng dụng
 app = Flask(__name__)
